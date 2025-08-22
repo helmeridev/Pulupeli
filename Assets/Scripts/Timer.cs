@@ -98,8 +98,8 @@ public class Timer : MonoBehaviour
         if (endingPanel != null)
         {
             endingPanel.SetActive(true);
-                if (badEndImage != null) badEndImage.SetActive(true);
-                if (goodEndImage != null) goodEndImage.SetActive(false);
+            if (badEndImage != null) badEndImage.SetActive(true);
+            if (goodEndImage != null) goodEndImage.SetActive(false);
         }
     }
 
