@@ -7,7 +7,7 @@ public class PlayerInventory : MonoBehaviour
     [Header("UI")]
     [SerializeField] public TextMeshProUGUI materialCounterText;
 
-    [Header("State (read-only)")]
+    [Header("State")]
     [SerializeField] public int materialCount;
 
     public UnityEvent<int> OnCountChanged;
