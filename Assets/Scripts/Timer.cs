@@ -10,7 +10,12 @@ public class Timer : MonoBehaviour
     [SerializeField] private bool countDown = false;
     [SerializeField] private float startTimeSeconds = 60f;
 
-    private float timeRemaining;
+    [Header("Ending Screens")]
+    [SerializeField] private GameObject endingPanel;
+    [SerializeField] private GameObject badEndImage;
+    [SerializeField] private GameObject goodEndImage;
+
+	private float timeRemaining;
     private float elapsedTime;
     private bool isRunning;
 
@@ -31,6 +36,8 @@ public class Timer : MonoBehaviour
             elapsedTime = 0f;
             UpdateDisplay(0f);
         }
+
+        if (endingPanel != null) endingPanel.SetActive(false);
     }
 
     void Update()
@@ -44,7 +51,7 @@ public class Timer : MonoBehaviour
             {
                 timeRemaining = 0f;
                 StopTimer();
-                // TODO: Game over event
+                ShowBadEnding();
             }
             UpdateDisplay(timeRemaining);
         }
@@ -65,6 +72,7 @@ public class Timer : MonoBehaviour
     
     public void StartTimer() => isRunning = true;
     public void StopTimer() => isRunning = false;
+
     public void ResetTimer()
     {
         if (countDown) timeRemaining = startTimeSeconds;
@@ -83,5 +91,26 @@ public class Timer : MonoBehaviour
     {
         countDown = false;
         ResetTimer();
+    }
+
+    private void ShowBadEnding()
+    {
+        if (endingPanel != null)
+        {
+            endingPanel.SetActive(true);
+                if (badEndImage != null) badEndImage.SetActive(true);
+                if (goodEndImage != null) goodEndImage.SetActive(false);
+        }
+    }
+
+    private void ShowGoodEnding()
+    {
+        StopTimer();
+        if (endingPanel != null)
+        {
+            endingPanel.SetActive(true);
+			if (badEndImage != null) badEndImage.SetActive(false);
+			if (goodEndImage != null) goodEndImage.SetActive(true);
+		}
     }
 }
