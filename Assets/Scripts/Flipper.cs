@@ -17,11 +17,11 @@ public class Flipper : MonoBehaviour
     {
         if (rb.linearVelocity.x > 0.01f)
         {
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
         else if (rb.linearVelocity.x < -0.01f)
         {
-            spriteRenderer.flipX=true;
+            spriteRenderer.flipX=false;
         }
     }
 }
