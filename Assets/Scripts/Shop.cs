@@ -63,6 +63,7 @@ public class Shop : MonoBehaviour
                 {
                     used = true;
                     UpdatePrompt(false);
+                    Destroy(gameObject);
                 }
             }
             else onInsufficient?.Invoke();
