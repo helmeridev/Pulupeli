@@ -1854,6 +1854,14 @@ MonoBehaviour:
   endingPanel: {fileID: 7180859684051191791}
   badEndImage: {fileID: 5000844253439163795}
   goodEndImage: {fileID: 5670109160913946571}
+  moonTransform: {fileID: 0}
+  moonStartScale: {x: 1, y: 1, z: 1}
+  moonEndScale: {x: 20, y: 20, z: 1}
+  moonEffectThreshold: 120
+  mainCamera: {fileID: 0}
+  shakeThreshold: 75
+  shakeIntensity: 0.1
+  shakeFrequency: 25
 --- !u!1 &5670109160913946571
 GameObject:
   m_ObjectHideFlags: 0
