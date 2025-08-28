@@ -213,9 +213,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialsNeeded: 10
+  materialType: 1
   inventory: {fileID: 0}
   playerTag: Player
   promptText: {fileID: 0}
+  shopImage: {fileID: 0}
+  material1Sprite: {fileID: 8725091887500905412, guid: 07df5a702e39dc44f847359d030a96cc, type: 3}
+  material2Sprite: {fileID: 7346775231629612742, guid: c35e333cb7dfe9c4fa5d197b73310a15, type: 3}
   singleUse: 1
   onSpendSuccess:
     m_PersistentCalls:
