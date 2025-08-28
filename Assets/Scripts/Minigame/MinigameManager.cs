@@ -12,6 +12,7 @@ public class MinigameManager : MonoBehaviour
 
     public DraggableItem[] items;
     public playerController playerController;
+    public PlayerInventory playerInventory;
 
     public void StartMinigame()
     {
@@ -62,8 +63,17 @@ public class MinigameManager : MonoBehaviour
         }
 
         Debug.Log("All items placed correctly! Minigame complete.");
+
+        // Update material2Count directly
+        playerInventory.material2Count += items.Length;
+
+        //Update the UI manually
+        if (playerInventory.material2CounterText != null)
+            playerInventory.material2CounterText.text = playerInventory.material2Count.ToString();
+
         ExitMinigame();
     }
+
 
     public void ExitMinigame()
     {
