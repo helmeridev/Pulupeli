@@ -609,26 +609,6 @@ PrefabInstance:
       propertyPath: moonTransform
       value: 
       objectReference: {fileID: 1041869664}
-    - target: {fileID: 5085371316818498103, guid: 77b4cae5b0cd1e54bb5d679f19dfdd10, type: 3}
-      propertyPath: moonEndScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5085371316818498103, guid: 77b4cae5b0cd1e54bb5d679f19dfdd10, type: 3}
-      propertyPath: moonEndScale.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5085371316818498103, guid: 77b4cae5b0cd1e54bb5d679f19dfdd10, type: 3}
-      propertyPath: moonEndScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5085371316818498103, guid: 77b4cae5b0cd1e54bb5d679f19dfdd10, type: 3}
-      propertyPath: shakeThreshold
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5085371316818498103, guid: 77b4cae5b0cd1e54bb5d679f19dfdd10, type: 3}
-      propertyPath: moonEffectThreshold
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 7142403767754104263, guid: 77b4cae5b0cd1e54bb5d679f19dfdd10, type: 3}
       propertyPath: m_Pivot.x
       value: 0
