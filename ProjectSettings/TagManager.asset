@@ -53,5 +53,8 @@ TagManager:
   - name: Tilemap deco
     uniqueID: 1385818477
     locked: 0
+  - name: Player
+    uniqueID: 2533521461
+    locked: 0
   m_RenderingLayers:
   - Default
