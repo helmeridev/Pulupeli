@@ -110,6 +110,8 @@ public class Timer : MonoBehaviour
         ResetTimer();
     }
 
+
+    // === Endings ===
     private void ShowBadEnding()
     {
         if (endingPanel != null)
@@ -120,7 +122,7 @@ public class Timer : MonoBehaviour
         }
     }
 
-    private void ShowGoodEnding()
+    public void ShowGoodEnding()
     {
         StopTimer();
         if (endingPanel != null)
@@ -130,7 +132,17 @@ public class Timer : MonoBehaviour
 			if (goodEndImage != null) goodEndImage.SetActive(true);
 		}
     }
+    /* To trigger ShowGoodEnding(), call the method on Timer.cs by adding this to the script with the win condition:
+        
+        [SerializeField] private string playerTag = "Player";
+        [SerialifeField] private GameTimer timer; // assign in Inspector
 
+        // Add this to the win condition:
+            timer.ShowGoodEnding();
+    */
+
+
+    // === Moon enlargement and camera shake ===
     private void HandleMoonEffect()
     {
         if (moonTransform == null) return;
