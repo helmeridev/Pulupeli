@@ -15,9 +15,22 @@ public class Timer : MonoBehaviour
     [SerializeField] private GameObject badEndImage;
     [SerializeField] private GameObject goodEndImage;
 
+    [Header("Moon")]
+    [SerializeField] private Transform moonTransform;
+    [SerializeField] private Vector3 moonStartScale = Vector3.one;
+    [SerializeField] private Vector3 moonEndScale = new Vector3(3f, 3f, 3f);
+    [SerializeField] private float moonEffectThreshold = 30f;
+
+    [Header("Camera Shake")]
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private float shakeThreshold = 10f;
+    [SerializeField] private float shakeIntensity = 0.1f;
+    [SerializeField] private float shakeFrequency = 25f;
+
 	private float timeRemaining;
     private float elapsedTime;
     private bool isRunning;
+    private Vector3 cameraOriginalPos;
 
     void Start()
     {
@@ -38,6 +51,8 @@ public class Timer : MonoBehaviour
         }
 
         if (endingPanel != null) endingPanel.SetActive(false);
+        if (mainCamera != null) cameraOriginalPos = mainCamera.transform.localPosition;
+        if (moonTransform != null) moonTransform.localScale = moonStartScale;
     }
 
     void Update()
@@ -54,6 +69,8 @@ public class Timer : MonoBehaviour
                 ShowBadEnding();
             }
             UpdateDisplay(timeRemaining);
+            HandleMoonEffect();
+            HandleCameraShake();
         }
         else
         {
@@ -112,5 +129,31 @@ public class Timer : MonoBehaviour
 			if (badEndImage != null) badEndImage.SetActive(false);
 			if (goodEndImage != null) goodEndImage.SetActive(true);
 		}
+    }
+
+    private void HandleMoonEffect()
+    {
+        if (moonTransform == null) return;
+        if (timeRemaining > moonEffectThreshold) return;
+
+        float t = Mathf.InverseLerp(moonEffectThreshold, 0f, timeRemaining);
+        moonTransform.localScale = Vector3.Lerp(moonStartScale, moonEndScale, t);
+    }
+
+    private void HandleCameraShake()
+    {
+        if (mainCamera == null) return;
+
+        if (timeRemaining > shakeThreshold)
+        {
+            return;
+        }
+
+        Vector3 basePos = mainCamera.transform.position;
+
+        float offsetX = (Mathf.PerlinNoise(Time.time * shakeFrequency, 0f) - 0.5f) * 2f * shakeIntensity;
+        float offsetY = (Mathf.PerlinNoise(0f, Time.time * shakeFrequency) - 0.5f) * 2f * shakeIntensity;
+
+        mainCamera.transform.position = basePos + new Vector3(offsetX, offsetY, 0f);
     }
 }
