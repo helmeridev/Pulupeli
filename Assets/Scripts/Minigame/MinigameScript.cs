@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class MinigameScript : MonoBehaviour
 {
-    public GameObject minigameUI; 
+    public MinigameManager minigameManager;
     private bool isInMinigame = false;
     private playerController playerMovement;
 
     void Start()
     {
         playerMovement = GameObject.FindWithTag("Player").GetComponent<playerController>();
-        minigameUI.SetActive(false);
+        minigameManager.minigameUI.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -31,20 +31,15 @@ public class MinigameScript : MonoBehaviour
     void EnterMinigame()
     {
         isInMinigame = true;
-        minigameUI.SetActive(true);
-
         playerMovement.FreezeMovement();
 
-
+        minigameManager.StartMinigame(); // Randomize every time
     }
 
     void ExitMinigame()
     {
         isInMinigame = false;
-        minigameUI.SetActive(false);
-
+        minigameManager.ExitMinigame();
         playerMovement.EnableMovement();
-
-
     }
 }

@@ -16,8 +16,8 @@ public class DropZone : MonoBehaviour, IDropHandler
             {
                 Debug.Log("Correct item placed!");
                 draggedItem.MarkAsPlaced();
-                // Snap item to bin
-                draggedItem.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+
+                Destroy(draggedItem.gameObject);
 
                 minigameManager.CheckWinCondition();
             }

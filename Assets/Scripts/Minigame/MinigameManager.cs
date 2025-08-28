@@ -13,9 +13,11 @@ public class MinigameManager : MonoBehaviour
     public DraggableItem[] items;
     public playerController playerController;
 
-    void Start()
+    public void StartMinigame()
     {
-        SpawnRandomItems();
+        ClearExistingItems();    // Remove old items
+        SpawnRandomItems();      // Spawn new ones
+        minigameUI.SetActive(true);
     }
 
     void SpawnRandomItems()
@@ -37,6 +39,17 @@ public class MinigameManager : MonoBehaviour
             DraggableItem draggable = itemObj.GetComponent<DraggableItem>();
             draggable.itemID = (prefabIndex + 1).ToString(); // ID 1 or 2
             items[i] = draggable;
+        }
+    }
+
+    void ClearExistingItems()
+    {
+        foreach (Transform child in spawnParent)
+        {
+            if (child.GetComponent<DraggableItem>() != null)
+            {
+                Destroy(child.gameObject);
+            }
         }
     }
 
