@@ -180,9 +180,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialsNeeded: 10
+  materialType: 0
   inventory: {fileID: 0}
   playerTag: Player
   promptText: {fileID: 0}
+  shopImage: {fileID: 0}
+  material1Sprite: {fileID: 0}
+  material2Sprite: {fileID: 0}
   singleUse: 0
   onSpendSuccess:
     m_PersistentCalls:

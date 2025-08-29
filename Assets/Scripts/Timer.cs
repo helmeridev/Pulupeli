@@ -5,6 +5,9 @@ public class Timer : MonoBehaviour
 {
     [Header("UI Reference")]
     [SerializeField] public TextMeshProUGUI timerText;
+    [SerializeField] private GameObject tutorialText;
+    private float tutorialTimer = 0f;
+    private bool tutorialHidden = false;
 
     [Header("Timer Settings")]
     [SerializeField] private bool countDown = false;
@@ -59,6 +62,13 @@ public class Timer : MonoBehaviour
     {
         if (!isRunning) return;
 
+        tutorialTimer += Time.deltaTime;
+        if (!tutorialHidden && tutorialTimer >= 15f)
+        {
+            tutorialHidden = true;
+            if (tutorialText != null) tutorialText.SetActive(false);
+        }
+
         if (countDown)
         {
             timeRemaining -= Time.deltaTime;
@@ -87,7 +97,11 @@ public class Timer : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, milliseconds);
     }
     
-    public void StartTimer() => isRunning = true;
+    public void StartTimer()
+    {
+        isRunning = true;
+        tutorialText.SetActive(true);
+    }
     public void StopTimer() => isRunning = false;
 
     public void ResetTimer()
@@ -163,8 +177,11 @@ public class Timer : MonoBehaviour
 
         Vector3 basePos = mainCamera.transform.position;
 
-        float offsetX = (Mathf.PerlinNoise(Time.time * shakeFrequency, 0f) - 0.5f) * 2f * shakeIntensity;
-        float offsetY = (Mathf.PerlinNoise(0f, Time.time * shakeFrequency) - 0.5f) * 2f * shakeIntensity;
+        float intensity = shakeIntensity;
+        if (timeRemaining <= 10f) intensity *= 10f;
+
+        float offsetX = (Mathf.PerlinNoise(Time.time * shakeFrequency, 0f) - 0.5f) * 2f * intensity;
+        float offsetY = (Mathf.PerlinNoise(0f, Time.time * shakeFrequency) - 0.5f) * 2f * intensity;
 
         mainCamera.transform.position = basePos + new Vector3(offsetX, offsetY, 0f);
     }
