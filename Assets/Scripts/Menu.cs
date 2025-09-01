@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    private playerController playerMovement;
     [SerializeField] private Timer timer;
 
     [Header("Countdown Times (seconds)")]
@@ -10,10 +11,16 @@ public class Menu : MonoBehaviour
     [SerializeField] private float mediumTime = 300f;
     [SerializeField] private float hardTime = 120f;
 
+    private void Start()
+    {
+        playerMovement = GameObject.FindWithTag("Player").GetComponent<playerController>();
+        playerMovement.FreezeMovement();
+    }
     public void StartEasy()
     {
         timer.ConfigureAsCountdown(easyTime);
         timer.StartTimer();
+        playerMovement.EnableMovement();
         HideMenu();
     }
 
@@ -21,6 +28,7 @@ public class Menu : MonoBehaviour
     {
         timer.ConfigureAsCountdown(mediumTime);
         timer.StartTimer();
+        playerMovement.EnableMovement();
         HideMenu();
     }
 
@@ -28,6 +36,7 @@ public class Menu : MonoBehaviour
     {
         timer.ConfigureAsCountdown(hardTime);
         timer.StartTimer();
+        playerMovement.EnableMovement();
         HideMenu();
     }
 
@@ -35,6 +44,7 @@ public class Menu : MonoBehaviour
     {
         timer.ConfigureAsStopwatch();
         timer.StartTimer();
+        playerMovement.EnableMovement();
         HideMenu();
     }
 

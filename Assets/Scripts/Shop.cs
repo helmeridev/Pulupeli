@@ -56,8 +56,19 @@ public class Shop : MonoBehaviour
         {
             inRange = false;
             UpdatePrompt(false);
+            ClearImage(); //Reset image when leaving
         }
     }
+
+    private void ClearImage()
+    {
+        if (shopImage != null)
+        {
+            shopImage.sprite = null;
+            shopImage.enabled = false; // Hide the image completely
+        }
+    }
+
 
     private void Update()
     {
@@ -107,17 +118,23 @@ public class Shop : MonoBehaviour
     {
         if (promptText == null) return;
 
-        if (show && !used)
+        if (show)
         {
             promptText.gameObject.SetActive(true);
             promptText.text = $"Press E to spend {materialsNeeded}";
         }
-        else promptText.gameObject.SetActive(false);
+        else
+        {
+            promptText.gameObject.SetActive(false);
+        }
     }
+
 
     private void UpdateImage()
     {
         if (shopImage == null) return;
+
+        shopImage.enabled = true; // Show image when updating
 
         if (materialType == MaterialType.Material1 && material1Sprite != null)
             shopImage.sprite = material1Sprite;
